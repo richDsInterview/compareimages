@@ -79,8 +79,10 @@ def compare_images_phash(image_path_1, image_path_2):
     dh1 = dhash.dhash_int(image_1)
     dh2 = dhash.dhash_int(image_2)
 
-    # return a 'score' of the Hamming distance between the two hashes (normalised by hash length)
-    return 1 - dhash.get_num_bits_different(dh1, dh2) / dh1.bit_length()
+    # return a 'score' of the Hamming distance between the two hashes (normalised by hash length), and the diff vector
+    score = 1 - dhash.get_num_bits_different(dh1, dh2) / dh1.bit_length()
+    diff = np.array([hex(dh1 ^ dh2)])
+    return score, diff
 
 def hello():
     return "hello"
