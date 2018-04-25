@@ -1,0 +1,5 @@
+nose
+numpy
+PIL
+cv2
+
