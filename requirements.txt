@@ -1,5 +1,7 @@
 nose
+scipy
 numpy
+imageio
 PIL
 cv2
 

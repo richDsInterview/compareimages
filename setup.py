@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 
-with open('README.rst') as f:
+with open('README.md') as f:
     readme = f.read()
 
 with open('LICENSE') as f:
@@ -12,7 +12,7 @@ with open('LICENSE') as f:
 setup(
     name='template',
     version='0.1.0',
-    description='template project',
+    description='template module project',
     long_description=readme,
     author='Richard Armstrong',
     author_email='armstrong.richard@gmail.com',
