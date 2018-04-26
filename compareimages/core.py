@@ -63,8 +63,8 @@ def compare_images_scaled(image_path1, image_path2, thumb=True, grey=False, pixe
     # return the Hamming difference between the two images and the difference image
     # score, diff = helpers.
     score = 1 - np.count_nonzero(im1 != im2)/im1.size
-    diff = np.abs(im1-im2)
-    return score, diff
+    #diff = np.abs(im1-im2)
+    return score #, diff
 
 
 def compare_images_phash(image_path_1, image_path_2):
@@ -84,8 +84,8 @@ def compare_images_phash(image_path_1, image_path_2):
 
     # return a 'score' of the Hamming distance between the two hashes (normalised by hash length), and the diff vector
     score = 1 - dhash.get_num_bits_different(dh1, dh2) / dh1.bit_length()
-    diff = np.array([hex(dh1 ^ dh2)])
-    return score, diff
+    #diff = np.array([hex(dh1 ^ dh2)])
+    return score #, diff
 
 def hello():
     return "hello"
