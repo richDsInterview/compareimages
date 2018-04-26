@@ -90,11 +90,4 @@ def compare_images_phash(image_path_1, image_path_2):
 def hello():
     return "hello"
 
-def get_hmm():
-    """Get a thought."""
-    return 'hmmm...'
 
-def hmm():
-    """Contemplation..."""
-    if helpers.get_answer():
-        print(get_hmm())
