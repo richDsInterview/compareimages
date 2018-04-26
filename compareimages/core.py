@@ -22,7 +22,10 @@ def compare_images_exact(image_path1, image_path2):
         return None
 
     # check whether the numpy representations of the images match
-    return np.array_equal(im1, im2)
+    if np.array_equal(im1, im2):
+        return 1.0
+    else:
+        return 0.0
 
 
 # compare_images_scaled: a method to compare two images that are possibly scaled versions of each
