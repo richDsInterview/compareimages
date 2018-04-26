@@ -12,7 +12,7 @@ def compare_images_exact(image_path1, image_path2):
         im1 = imageio.imread(image_path1)
         im2 = imageio.imread(image_path2)
     except FileNotFoundError: # file does not exist
-        print("compare_images_phash: one of the file arguments does not exist")
+        print("compare_images_exact: one of the file arguments does not exist")
         return None
     except ValueError: # file is not an image file
         print("compare_images_exact: one of the file arguments is not an image file")
@@ -69,8 +69,8 @@ def compare_images_scaled(image_path1, image_path2, thumb=True, grey=False, pixe
 
 def compare_images_phash(image_path_1, image_path_2):
     try: # open images, error checking inputs
-        image_1 = PIL.Image.open(image_path_1)
-        image_2 = PIL.Image.open(image_path_2)
+        image_1 = Image.open(image_path_1)
+        image_2 = Image.open(image_path_2)
     except FileNotFoundError:# file does not exist
         print("compare_images_phash: one of the file arguments does not exist")
         return None
