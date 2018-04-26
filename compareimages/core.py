@@ -3,7 +3,7 @@ from . import helpers
 import numpy as np
 import imageio
 import cv2
-import PIL.Image
+from PIL import Image
 import dhash
 
 # compare_images_exact: a method to compare whether two images are precisely the same
