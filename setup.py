@@ -26,5 +26,6 @@ setup(
 	'numpy',
 	'imageio',
 	'Pillow',
-	'opencv-python'])
+	'opencv-python',
+	'dhash'])
 
