@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+'''
+A set of modules that perform image comparison
+'''
+
 from . import helpers
 import numpy as np
 import imageio
@@ -6,7 +10,7 @@ import cv2
 from PIL import Image
 import dhash
 
-# compare_images_exact: a method to compare whether two images are precisely the same
+# compare_images_exact: compare whether two images are precisely the same
 def compare_images_exact(image_path1, image_path2):
     try:
         im1 = imageio.imread(image_path1)
@@ -22,13 +26,14 @@ def compare_images_exact(image_path1, image_path2):
         return None
 
     # check whether the numpy representations of the images match
+    # (return a `binary' float for consistency with other modules)
     if np.array_equal(im1, im2):
         return 1.0
     else:
         return 0.0
 
 
-# compare_images_scaled: a method to compare two images that are possibly scaled versions of each
+# compare_images_scaled: compare two images that are possibly scaled versions of each
 # other. Optional arguments are to first convert to thumbnail representations, to quantise
 # colour information (make greyscale), and quantise pixel values.
 def compare_images_scaled(image_path1, image_path2, thumb=True, grey=False, pixelQuant=8, gridsize=16):
@@ -56,17 +61,16 @@ def compare_images_scaled(image_path1, image_path2, thumb=True, grey=False, pixe
         im1 = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
         im2 = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
 
-    #scale by the pixel quantisation amount
+    # scale by the pixel quantisation amount
         im1 = im1//pixelQuant
         im2 = im2//pixelQuant
 
     # return the Hamming difference between the two images and the difference image
-    # score, diff = helpers.
-    score = 1 - np.count_nonzero(im1 != im2)/im1.size
-    #diff = np.abs(im1-im2)
-    return score #, diff
+    return 1 - np.count_nonzero(im1 != im2)/im1.size
 
 
+# compare_images_phash: compare two images using a perceptual hash, in this case a difference
+# hash algorithm, and return a unitary measure of nearness.
 def compare_images_phash(image_path_1, image_path_2):
     try: # open images, error checking inputs
         image_1 = Image.open(image_path_1)
@@ -83,11 +87,8 @@ def compare_images_phash(image_path_1, image_path_2):
     dh2 = dhash.dhash_int(image_2)
 
     # return a 'score' of the Hamming distance between the two hashes (normalised by hash length), and the diff vector
-    score = 1 - dhash.get_num_bits_different(dh1, dh2) / dh1.bit_length()
-    #diff = np.array([hex(dh1 ^ dh2)])
-    return score #, diff
+    return 1 - dhash.get_num_bits_different(dh1, dh2) / dh1.bit_length()
+
 
 def hello():
     return "hello"
-
-
