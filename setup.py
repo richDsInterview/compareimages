@@ -18,6 +18,13 @@ setup(
     author_email='armstrong.richard@gmail.com',
     url='https://github.com/richDsInterview/compareimages',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
-)
+    packages=find_packages(exclude=('tests', 'docs')),
+    install_requires=[
+	'nose', 
+	'imageio', 
+	'scipy',
+	'numpy',
+	'imageio',
+	'Pillow',
+	'opencv-python'])
 
